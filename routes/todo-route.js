@@ -6,7 +6,7 @@ const {
   editTodoById,
   deleteAllTodo,
   deleteTodoById,
-} = require("../controllers/todos-controller");
+} = require("../controllers/todo-controller");
 const route = express.Router();
 
 //  Membuat todo baru
@@ -22,7 +22,7 @@ route.get("/:id", getTodoById);
 route.put("/:id", editTodoById);
 
 // Menghapus todo
-route.delete(":/id", deleteTodoById);
+route.delete("/:id", deleteTodoById);
 
 // Menghapus semua todo
 route.delete("/", deleteAllTodo);

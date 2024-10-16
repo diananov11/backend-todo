@@ -1,8 +1,10 @@
 const express = require("express");
 const route = express.Router();
 
-const todosRoute = require("./todos-route");
+const todoRoute = require("./todo-route");
+const userRoute = require("./user-route");
 
-route.use("/todos", todosRoute);
+route.use("/todos", todoRoute);
+route.use("/users", userRoute);
 
 module.exports = route;
