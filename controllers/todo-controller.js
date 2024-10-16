@@ -9,6 +9,7 @@ module.exports = {
 
     res.json({
       message: "data Todo berhasil dibuat",
+      data,
     });
   },
 
@@ -41,11 +42,10 @@ module.exports = {
   },
 
   deleteTodoById: async (req, res) => {
-    const data = await Todo.findByIdAndDelete(req.params.id);
+    await Todo.findByIdAndDelete(req.params.id);
 
     res.json({
       message: "Berhasil menghapus data Todo",
-      data,
     });
   },
 
