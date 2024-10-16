@@ -3,8 +3,7 @@ const User = require("../models/User");
 module.exports = {
   addUser: async (req, res) => {
     try {
-      const data = req.body;
-      const newUser = new User(data);
+      const newUser = new User(req.body);
       const savedUser = await newUser.save();
 
       res.status(201).json({
@@ -23,11 +22,11 @@ module.exports = {
   addBulkUser: async (req, res) => {
     try {
       const data = req.body;
-      const todos = User.insertMany(data);
+      const users = User.insertMany(data);
 
       res.status(201).json({
         message: "data Bulk User berhasil dibuat",
-        data: todos,
+        data,
       });
     } catch (error) {
       console.log(error);
@@ -41,7 +40,6 @@ module.exports = {
   getAllUser: async (req, res) => {
     try {
       const data = await User.find({}).populate("todo");
-
       res.status(200).json({
         message: "Berhasil mendapatkan semua data User",
         data,
@@ -122,8 +120,8 @@ module.exports = {
 
   deleteAllUser: async (req, res) => {
     try {
-      await Todo.deleteMany({});
-      res.res(200).json({ message: "Berhasil menghapus semua data User" });
+      await User.deleteMany({});
+      res.status(200).json({ message: "Berhasil menghapus semua data User" });
     } catch (error) {
       console.log(error);
       res.status(400).json({
