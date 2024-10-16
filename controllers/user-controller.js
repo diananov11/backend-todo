@@ -1,66 +1,134 @@
 const User = require("../models/User");
 
 module.exports = {
-  addUser: (req, res) => {
-    const data = req.body;
+  addUser: async (req, res) => {
+    try {
+      const data = req.body;
+      const newUser = new User(data);
+      const savedUser = await newUser.save();
 
-    const newUser = new User(data);
-    newUser.save();
-
-    res.json({
-      message: "data User berhasil dibuat",
-    });
+      res.status(201).json({
+        message: "data User berhasil dibuat",
+        data: savedUser,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({
+        message:
+          "Gagal membuat data user, pastikan data name dan age sudah benar",
+      });
+    }
   },
 
   addBulkUser: async (req, res) => {
-    const data = req.body;
+    try {
+      const data = req.body;
+      const todos = User.insertMany(data);
 
-    const todos = User.insertMany(data);
-
-    res.json({
-      message: "data Bulk User berhasil dibuat",
-      data,
-    });
+      res.status(201).json({
+        message: "data Bulk User berhasil dibuat",
+        data: todos,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({
+        message:
+          "Gagal membuat data Bulk User, pastikan data name dan age sudah benar",
+      });
+    }
   },
 
   getAllUser: async (req, res) => {
-    const data = await User.find({}).populate("todo");
+    try {
+      const data = await User.find({}).populate("todo");
 
-    res.json({
-      message: "Berhasil mendapatkan semua data User",
-      data,
-    });
+      res.status(200).json({
+        message: "Berhasil mendapatkan semua data User",
+        data,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({
+        message: "Terjadi Error, Gagal mendapatkan semua data user",
+      });
+    }
   },
 
   getUserById: async (req, res) => {
-    const data = await User.findById(req.params.id).populate("todo").exec();
+    try {
+      const data = await User.findById(req.params.id).populate("todo").exec();
 
-    res.json({
-      message: "Berhasil mendapatkan data User",
-      data,
-    });
+      if (!data) {
+        return res
+          .status(404)
+          .json({ message: `User ${req.params.id}  tidak ditemukan` });
+      }
+
+      res.status(200).json({
+        message: `Berhasil mendapatkan data User ${req.params.id} `,
+        data,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({
+        message: `Gagal mendapatkan data user ${req.params.id} `,
+      });
+    }
   },
 
   editUserById: async (req, res) => {
-    await User.findByIdAndUpdate(req.params.id, {
-      $set: req.body,
-    });
+    try {
+      const data = await User.findByIdAndUpdate(req.params.id, {
+        $set: req.body,
+      });
 
-    res.json({
-      message: "Berhasil mengedit data User",
-    });
+      if (!data) {
+        return res
+          .status(404)
+          .json({ message: `User ${req.params.id} tidak ditemukan` });
+      }
+
+      res.status(200).json({
+        message: `Berhasil mengedit data User ${req.params.id} `,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({
+        message: `Gagal mengedit data user ${req.params.id} `,
+      });
+    }
   },
 
   deleteUserById: async (req, res) => {
-    await User.findByIdAndDelete(req.params.id);
+    try {
+      const data = await User.findByIdAndDelete(req.params.id);
 
-    res.json({
-      message: "Berhasil menghapus data User",
-    });
+      if (!data) {
+        return res
+          .status(404)
+          .json({ message: `User ${req.params.id} tidak ditemukan` });
+      }
+
+      res.status(200).json({
+        message: `Berhasil menghapus data User ${req.params.id} `,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({
+        message: `Terjadi Error, gagal menghapus data user ${req.params.id} `,
+      });
+    }
   },
 
   deleteAllUser: async (req, res) => {
-    await Todo.deleteMany({});
-    res.json({ message: "Berhasil menghapus semua data User" });
+    try {
+      await Todo.deleteMany({});
+      res.res(200).json({ message: "Berhasil menghapus semua data User" });
+    } catch (error) {
+      console.log(error);
+      res.status(400).json({
+        message: "Terjadi Error, gagal menghapus semua data user",
+      });
+    }
   },
 };
