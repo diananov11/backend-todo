@@ -6,11 +6,15 @@ const {
   editUserById,
   deleteAllUser,
   deleteUserById,
+  addBulkUser,
 } = require("../controllers/user-controller");
 const route = express.Router();
 
 //  Membuat User baru
 route.post("/", addUser);
+
+// Membuat bulk data user
+route.post("/seeder", addBulkUser);
 
 // Melihat semua User
 route.get("/", getAllUser);

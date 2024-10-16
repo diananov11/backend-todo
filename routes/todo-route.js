@@ -6,11 +6,15 @@ const {
   editTodoById,
   deleteAllTodo,
   deleteTodoById,
+  addBulkTodo,
 } = require("../controllers/todo-controller");
 const route = express.Router();
 
 //  Membuat todo baru
 route.post("/", addTodo);
+
+// Membuat bulk todo
+route.post("/seeder", addBulkTodo);
 
 // Melihat semua todo
 route.get("/", getAllTodo);

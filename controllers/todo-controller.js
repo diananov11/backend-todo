@@ -13,6 +13,17 @@ module.exports = {
     });
   },
 
+  addBulkTodo: async (req, res) => {
+    const data = req.body;
+
+    const todos = Todo.insertMany(data);
+
+    res.json({
+      message: "data Bulk Todo berhasil dibuat",
+      data,
+    });
+  },
+
   getAllTodo: async (req, res) => {
     const data = await Todo.find({});
 

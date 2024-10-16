@@ -12,6 +12,17 @@ module.exports = {
     });
   },
 
+  addBulkUser: async (req, res) => {
+    const data = req.body;
+
+    const todos = User.insertMany(data);
+
+    res.json({
+      message: "data Bulk User berhasil dibuat",
+      data,
+    });
+  },
+
   getAllUser: async (req, res) => {
     const data = await User.find({}).populate("todo");
 
