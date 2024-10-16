@@ -1,12 +1,8 @@
 const express = require("express");
 const route = express.Router();
 
-route.get("/", (req, res) => {
-  res.json({
-    message: "selamat datang di todo apps",
-  });
-});
+const todosRoute = require("./todos-route");
 
-// router.use("/todos");
+route.use("/todos", todosRoute);
 
 module.exports = route;
