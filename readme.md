@@ -1,8 +1,10 @@
 ## Dokumentasi API
+### Building Web Service & RESTful API for ToDoList with Express
+The goal of this project is to design and develop a web service and RESTful API for managing a ToDoList using Node.js and Express. This service will allow users to perform essential CRUD (Create, Read, Update, Delete) operations on their tasks, providing a robust backend for any ToDoList application. Using mongoose as ODM and mongoDB as database.
 
+
+#### Models
 ```
-## Models
-
 Todo
 
 - title : string (required),
@@ -19,12 +21,13 @@ User
 - name : string,
 - username : string, unique (required),
 - password : string (required)
+```
 
-## Endpoints
-
+#### Endpoints
+```
 List of available endpoints:
 
-** middleware **
+** auth middleware **
 - POST `/auth/register`
 - POST `/auth/login`
 
