@@ -1,6 +1,6 @@
 ## Dokumentasi API
 
-````
+```
 ## Models
 
 Todo
@@ -45,6 +45,7 @@ List of available endpoints:
 -   PUT `/students/:id`
 -   DELETE `/students/:id`
 -   DELETE `/students`
+```
 
 ## 1. POST /auth/register
 
@@ -57,6 +58,7 @@ List of available endpoints:
   "password": "string"
 }
 ```
+
 ````
 
 - Response (201 - Created)
@@ -65,7 +67,7 @@ List of available endpoints:
 {
   "message": "Berhasil melakukan register"
 }
-```
+````
 
 - Response (400 - Bad Request)
 
@@ -116,5 +118,34 @@ List of available endpoints:
 ```json
 {
   "message": "Username tidak ditemukan"
+}
+```
+
+## 3. POST /todos
+
+- Request body:
+
+```json
+{
+  "title": "string",
+  "done": "boolean",
+}
+```
+
+````
+
+- Response (201 - Created)
+
+```json
+{
+  "message": "data Todo berhasil dibuat"
+}
+````
+
+- Response (400 - Bad Request)
+
+```json
+{
+  "message": "Gagal membuat data todo, pastikan data title telah diinput"
 }
 ```
