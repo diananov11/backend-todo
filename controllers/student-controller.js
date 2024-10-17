@@ -4,11 +4,11 @@ module.exports = {
   addStudent: async (req, res) => {
     try {
       const newStudent = new Student(req.body);
-      const savedStudent = await newStudent.save();
+      await newStudent.save();
 
       res.status(201).json({
         message: "data Student berhasil dibuat",
-        data: savedStudent,
+        data,
       });
     } catch (error) {
       console.log(error);

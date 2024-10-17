@@ -4,7 +4,7 @@ module.exports = {
   addTodo: async (req, res) => {
     try {
       const newTodo = new Todo(req.body);
-      const savedTodo = await newTodo.save();
+      await newTodo.save();
 
       res.status(201).json({
         message: "data Todo berhasil dibuat",
@@ -21,7 +21,7 @@ module.exports = {
   addBulkTodo: async (req, res) => {
     try {
       const data = req.body;
-      const todos = Todo.insertMany(data);
+      Todo.insertMany(data);
 
       res.status(201).json({
         message: "data Bulk Todo berhasil dibuat",
