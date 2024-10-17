@@ -11,7 +11,7 @@ module.exports = {
 
     const token = header.split(" ")[1];
     if (!token) {
-      return res.status(401).json({ message: "unauthorized" });
+      return res.status(401).json({ message: "Akses tidak sah" });
     }
 
     try {
@@ -20,7 +20,7 @@ module.exports = {
       next();
     } catch (error) {
       console.log(error);
-      return res.status(401).json({ message: "unauthorized" });
+      return res.status(401).json({ message: "Akses tidak sah" });
     }
   },
 };
