@@ -8,7 +8,7 @@ module.exports = {
 
       res.status(201).json({
         message: "data Todo berhasil dibuat",
-        data,
+        data: newTodo,
       });
     } catch (error) {
       console.log(error);
