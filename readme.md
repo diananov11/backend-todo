@@ -306,7 +306,7 @@ List of available endpoints:
 
 ```json
 {
-  "message": "Terjadi Error, berhasil menghapus data todo <id>"
+  "message": "Terjadi Error, berhasil menghapus data todo "
 }
 ```
 
@@ -444,7 +444,6 @@ List of available endpoints:
 ```
 
 - Response (200 - OK)
-- auth type: bearer token
 
 ```json
 {
@@ -453,7 +452,6 @@ List of available endpoints:
 ```
 
 - Response (400 - Bad Request)
-- auth type: bearer token
 
 ```json
 {
@@ -511,6 +509,6 @@ List of available endpoints:
 
 ```json
 {
-  "message": "Terjadi Error, berhasil menghapus data student <id>"
+  "message": "Terjadi Error, berhasil menghapus data student"
 }
 ```
