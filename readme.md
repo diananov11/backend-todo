@@ -309,3 +309,208 @@ List of available endpoints:
   "message": "Terjadi Error, berhasil menghapus data todo <id>"
 }
 ```
+
+## 10. POST /students
+
+- auth type: bearer token
+- Request body:
+
+```json
+{
+  "name": "string",
+  "age": "number",
+  "todo": "ref id of models todo"
+}
+```
+
+- Response (201 - Created)
+
+```json
+{
+  "message": "data Student berhasil dibuat",
+  "data": "Object"
+}
+```
+
+- Response (400 - Bad Request)
+
+```json
+{
+  "message": "Gagal membuat data student, pastikan data title telah diinput"
+}
+```
+
+## 11. POST /students/seeder
+
+- auth type: bearer token
+- Request body:
+
+```json
+[
+  {
+    "name": "string",
+    "age": "number",
+    "todo": "ref id of models todo"
+  },
+  {
+    "name": "string",
+    "age": "number",
+    "todo": "ref id of models todo"
+  },
+  {
+    "name": "string",
+    "age": "number",
+    "todo": "ref id of models todo"
+  }
+]
+```
+
+- Response (201 - Created)
+
+```json
+{
+  "message": "data Bulk Student berhasil dibuat",
+  "data": "Array of Object"
+}
+```
+
+- Response (400 - Bad Request)
+
+```json
+{
+  "message": "Gagal membuat data Bulk Student, pastikan data title sudah benar"
+}
+```
+
+## 12. GET /students
+
+- auth type: bearer token
+- Response (200 - OK)
+
+```json
+{
+  "message": "Berhasil mendapatkan semua data Student",
+  "data": "Array of Object"
+}
+```
+
+- Response (400 - Bad Request)
+
+```json
+{
+  "message": "Terjadi Error, Gagal mendapatkan semua data student"
+}
+```
+
+## 13. GET /students/:id
+
+- auth type: bearer token
+- Response (200 - OK)
+
+```json
+{
+  "message": "Berhasil mendapatkan data Student <id>",
+  "data": "Object"
+}
+```
+
+- Response (400 - Bad Request)
+
+```json
+{
+  "message": "Gagal mendapatkan data student <id>"
+}
+```
+
+- Response (404 - Not Found)
+
+```json
+{
+  "message": "Student <id> tidak ditemukan"
+}
+```
+
+## 14. PUT /students/:id
+
+- auth type: bearer token
+- Request body:
+
+```json
+{
+  "name": "string",
+  "age": "number",
+  "todo": "ref id of models todo"
+}
+```
+
+- Response (200 - OK)
+- auth type: bearer token
+
+```json
+{
+  "message": "Berhasil mengedit data Student <id>"
+}
+```
+
+- Response (400 - Bad Request)
+- auth type: bearer token
+
+```json
+{
+  "message": "Gagal mengedit data student <id>"
+}
+```
+
+- Response (404 - Not Found)
+
+```json
+{
+  "message": "Student <id> tidak ditemukan"
+}
+```
+
+## 15. DELETE /students/:id
+
+- auth type: bearer token
+- Response (200 - OK)
+
+```json
+{
+  "message": "Berhasil menghapus data Student <id>"
+}
+```
+
+- Response (400 - Bad Request)
+
+```json
+{
+  "message": "Terjadi Error, gagal menghapus data student <id>"
+}
+```
+
+- Response (404 - Not Found)
+
+```json
+{
+  "message": "Student <id> tidak ditemukan"
+}
+```
+
+## 16. DELETE /students
+
+- auth type: bearer token
+- Response (200 - OK)
+
+```json
+{
+  "message": "Berhasil menghapus semua data Student"
+}
+```
+
+- Response (400 - Bad Request)
+
+```json
+{
+  "message": "Terjadi Error, berhasil menghapus data student <id>"
+}
+```
