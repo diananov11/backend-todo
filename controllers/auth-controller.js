@@ -50,7 +50,7 @@ module.exports = {
         process.env.PRIVATE_KEY
       );
 
-      res.status(201).json({
+      res.status(200).json({
         message: "Berhasil login",
         token,
       });
