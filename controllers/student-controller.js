@@ -61,7 +61,7 @@ module.exports = {
       if (!data) {
         return res
           .status(404)
-          .json({ message: `Student ${req.params.id}  tidak ditemukan` });
+          .json({ message: `Student ${req.params.id} tidak ditemukan` });
       }
 
       res.status(200).json({

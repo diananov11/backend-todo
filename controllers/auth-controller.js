@@ -44,6 +44,7 @@ module.exports = {
         return res.status(401).json({ message: "Password salah" });
       }
 
+      // buat token jwt
       const token = jwt.sign(
         { username: data.username },
         process.env.PRIVATE_KEY

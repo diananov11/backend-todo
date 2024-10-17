@@ -4,6 +4,7 @@ const route = express.Router();
 const authRoute = require("./auth-route");
 const todoRoute = require("./todo-route");
 const studentRoute = require("./student-route");
+const { validateToken } = require("../middleware/auth");
 
 route.get("/", (req, res) => {
   res.json({
@@ -14,6 +15,6 @@ route.get("/", (req, res) => {
 
 route.use("/auth", authRoute);
 route.use("/todos", todoRoute);
-route.use("/students", studentRoute);
+route.use("/students", validateToken, studentRoute);
 
 module.exports = route;
