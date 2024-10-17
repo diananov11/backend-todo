@@ -59,15 +59,13 @@ List of available endpoints:
 }
 ```
 
-````
-
 - Response (201 - Created)
 
 ```json
 {
   "message": "Berhasil melakukan register"
 }
-````
+```
 
 - Response (400 - Bad Request)
 
@@ -128,24 +126,186 @@ List of available endpoints:
 ```json
 {
   "title": "string",
-  "done": "boolean",
+  "done": "boolean"
 }
 ```
-
-````
 
 - Response (201 - Created)
 
 ```json
 {
-  "message": "data Todo berhasil dibuat"
+  "message": "data Todo berhasil dibuat",
+  "data": "Object"
 }
-````
+```
 
 - Response (400 - Bad Request)
 
 ```json
 {
   "message": "Gagal membuat data todo, pastikan data title telah diinput"
+}
+```
+
+## 4. POST /todos/seeder
+
+- Request body:
+
+```json
+[
+  {
+    "title": "string",
+    "done": "boolean"
+  },
+  {
+    "title": "string",
+    "done": "boolean"
+  },
+  {
+    "title": "string",
+    "done": "boolean"
+  }
+]
+```
+
+- Response (201 - Created)
+
+```json
+{
+  "message": "data Bulk Todo berhasil dibuat",
+  "data": "Array of Object"
+}
+```
+
+- Response (400 - Bad Request)
+
+```json
+{
+  "message": "Gagal membuat data Bulk Todo, pastikan data title sudah benar"
+}
+```
+
+## 5. GET /todos
+
+- Response (200 - OK)
+
+```json
+{
+  "message": "Berhasil mendapatkan semua data Todo",
+  "data": "Array of Object"
+}
+```
+
+- Response (400 - Bad Request)
+
+```json
+{
+  "message": "Terjadi Error, Gagal mendapatkan semua data todo"
+}
+```
+
+## 6. GET /todos/:id
+
+- Response (200 - OK)
+
+```json
+{
+  "message": "Berhasil mendapatkan data Todo <id>",
+  "data": "Object"
+}
+```
+
+- Response (400 - Bad Request)
+
+```json
+{
+  "message": "Gagal mendapatkan data todo <id>"
+}
+```
+
+- Response (404 - Not Found)
+
+```json
+{
+  "message": "Todo <id> tidak ditemukan"
+}
+```
+
+## 7. PUT /todos/:id
+
+- Request body:
+
+```json
+{
+  "title": "string",
+  "done": "boolean"
+}
+```
+
+- Response (200 - OK)
+
+```json
+{
+  "message": "Berhasil mengedit data Todo <id>"
+}
+```
+
+- Response (400 - Bad Request)
+
+```json
+{
+  "message": "Gagal mengedit data todo <id>"
+}
+```
+
+- Response (404 - Not Found)
+
+```json
+{
+  "message": "Todo <id> tidak ditemukan"
+}
+```
+
+## 8. DELETE /todos/:id
+
+- Response (200 - OK)
+
+```json
+{
+  "message": "Berhasil menghapus data Todo <id>"
+}
+```
+
+- Response (400 - Bad Request)
+
+```json
+{
+  "message": "Terjadi Error, gagal menghapus data todo <id>"
+}
+```
+
+- Response (404 - Not Found)
+
+```json
+{
+  "message": "Todo <id> tidak ditemukan"
+}
+```
+
+## 9. DELETE /todos
+
+- Response (200 - OK)
+
+```json
+{
+  "message": "Berhasil menghapus semua data Todo"
+}
+```
+
+- Response (400 - Bad Request)
+
+```json
+{
+  "message": "Terjadi Error, berhasil menghapus data todo <id>"
 }
 ```

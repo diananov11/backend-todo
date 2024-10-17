@@ -63,7 +63,7 @@ module.exports = {
       }
 
       res.status(200).json({
-        message: "Berhasil mendapatkan data Todo",
+        message: `Berhasil mendapatkan data Todo ${req.params.id}`,
         data,
       });
     } catch (error) {
@@ -87,7 +87,7 @@ module.exports = {
       }
 
       res.status(200).json({
-        message: "Berhasil mengedit data Todo",
+        message: `Berhasil mengedit data Todo ${req.params.id}`,
       });
     } catch (error) {
       console.log(error);
@@ -108,7 +108,7 @@ module.exports = {
       }
 
       res.status(200).json({
-        message: "Berhasil menghapus data Todo",
+        message: `Berhasil menghapus data Todo ${req.params.id}`,
       });
     } catch (error) {
       console.log(error);
