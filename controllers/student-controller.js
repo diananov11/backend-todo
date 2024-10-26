@@ -39,14 +39,42 @@ module.exports = {
 
   getAllStudent: async (req, res) => {
     try {
-      const data = await Student.find({}).populate("todo");
+      //masukin query parameter
+      const { age, name, todoDone } = req.query;
+
+      const query = {};
+      // query age harus angka
+      if (age) query.age = parseInt(age);
+      // query name bisa pakai "" dan case insensitive
+      if (name) {
+        const cleanName = name.replace(/"/g, "");
+        query.name = { $regex: new RegExp(cleanName, "i") };
+      }
+
+      // Execute query with Mongoose and populate the 'todo' field
+      let students = await Student.find(query).populate("todo");
+
+      // filter todo berdasarkan done dan
+      if (todoDone !== undefined) {
+        const isDone = todoDone === "false"; // convert param query ke boolean
+        students = students.filter((student) => student.todo.done === isDone);
+      }
+
+      // Check if students exist after filtering
+      if (!students.length) {
+        return res
+          .status(404)
+          .json({ message: "tidak ada students yang sesuai kriteria" });
+      }
+
+      // Return the filtered students
       res.status(200).json({
         message: "Berhasil mendapatkan semua data Student",
-        data,
+        data: students,
       });
     } catch (error) {
-      console.log(error);
-      res.status(400).json({
+      console.error("Error:", error.message, error);
+      res.status(500).json({
         message: "Terjadi Error, Gagal mendapatkan semua data Student",
       });
     }
